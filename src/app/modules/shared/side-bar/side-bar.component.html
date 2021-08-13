@@ -1,0 +1,99 @@
+<!-- sidebar-dark-primary elevation-4 ,  sidebar-light-maroon  -->
+<aside class="main-sidebar sidebar-light-maroon">
+  <a [routerLink]="['/']" class="brand-link">
+    <img src="assets/images/logo.png" alt="Control-Panel" class="brand-image img-circle elevation-3 app-back-ground-color-white"
+    style="opacity: .8;">
+    <span class="brand-text font-weight-light">
+      AngAAdi
+      <!-- {{ userDetails.FirstName }} {{ userDetails.LastName }}
+      {{ userDetails.given_name }} -->
+    </span>
+  </a>
+
+  <div class="sidebar app-scroll-bar">
+    <nav class="mt-4">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a [routerLink]="['/']" class="nav-link">
+            <i class="nav-icon fas fa fa-th-large" aria-hidden="true"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a class="nav-link c-point">
+            <i class="nav-icon fas fa fa-industry"></i>
+            <p>Industry <i class="right fa fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item c-point">
+              <span [routerLink]="['/industry/industry-list']" [routerLinkActive]="['active']" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p>Industry List</p>
+              </span>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item c-point">
+              <span [routerLink]="['/industry/industry-create']" [routerLinkActive]="['active']" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p>Industry Create</p>
+              </span>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a class="nav-link c-point">
+            <i class="nav-icon fas fa fa-users"></i>
+            <p>Vendor <i class="right fa fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item c-point">
+              <span [routerLink]="['/vendor/vendor-create']" [routerLinkActive]="['active']" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p>Vendor Create</p>
+              </span>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a class="nav-link c-point">
+            <i class="nav-icon fas fa fa-sliders"></i>
+            <p>Products <i class="right fa fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item c-point">
+              <a [routerLink]="['products/product-create']" [routerLinkActive]="['active']" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p>Product Create</p>
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a [routerLink]="['/v2/addon']" [routerLinkActive]="['active']" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p>Product add on</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/v2/vendor-category']" [routerLinkActive]="['active']" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p>Product category</p>
+              </a>
+            </li> -->
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a [routerLink]="['/']" class="nav-link">
+            <i class="nav-icon fas fa fa-cog"></i>
+            <p>Setting</p>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+
+</aside>

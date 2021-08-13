@@ -1,0 +1,321 @@
+<section class="content-header">
+  <div class="container-fluid">
+
+    <div class="card mt-1">
+      <div class="card-body">
+        <div class="page-heading mb-lg-5">
+          <h4>{{ pageHeading }}</h4>
+          <ul class="list-inline text-muted small">
+            <li class="list-inline-item"><a class="text-secondary" href="#">Home</a></li>
+            <li class="list-inline-item"><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+            <li class="list-inline-item active font-weight-bold">{{ pageHeading }}</li>
+          </ul>
+        </div>
+
+        <section class="content-main">
+          <div class="p-4 content-main-color">
+            <div class="card m-0">
+              <div class="card-body">
+                <form [formGroup]="productForm">
+
+                  <div class="form-group row">
+                    <div class="col-6">
+                      <div class="row">
+                        <label class="col-sm-4 col-form-label">Vendor <span class="text-danger">*</span></label>
+                        <div class="col-sm-8">
+                          <ng-select placeholder="Select Vendor" [items]="vendors" bindLabel="name" bindValue="id" [multiple]="false"
+                          formControlName="vendorId" class="selectVendorInput" [loading]="false"
+                          [ngClass]="{'errorBorder': submitted && productForm.get('vendorId').errors}" [readonly]="false"> </ng-select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="row">
+                        <label class="col-sm-4 col-form-label">Product Status <span class="text-danger">*</span></label>
+                        <div class="col-sm-8">
+                          <ng-select placeholder="Select Product Status" [items]="['Active', 'In-active']" [multiple]="false"
+                          [(ngModel)]="customNgModel['status']" [ngModelOptions]="{standalone: true}"> </ng-select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Product Name <span class="text-danger">*</span></label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" placeholder="Enter product name" formControlName="name"
+                          [ngClass]="{'errorBorder': submitted && productForm.get('name').errors}">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Product Description <span class="text-danger">*</span></label>
+                    <div class="col-sm-10">
+                      <textarea class="form-control" rows="3" formControlName="desc" placeholder="Enter product description (Max 750 Characters)"
+                          [ngClass]="{'errorBorder': submitted && productForm.get('desc').errors}"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Product Details <span class="text-danger">*</span></label>
+                    <div class="col-sm-10">
+                      <ckeditor formControlName="moreInfo"></ckeditor>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Product Images <span class="text-danger">*</span></label>
+                    <div class="col-sm-10">
+                      <div class="imageBoxDev d-flex align-items-center">
+                        <div *ngFor="let image of productThum; let i = index" class="mx-3">
+                          <i class="fa fa-times imageClose" aria-hidden="true" (click)="productImageRemove(image, i)"></i>
+                          <img [src]="image">
+                        </div>
+                        <div class="add-image-model-popup c-point ml-2" data-toggle="modal" data-target="#imageCropperModel" data-backdrop="static"
+                        data-keyboard="false" (click)="openImageCropper()" *ngIf="productThum.length !== 5">
+                          Add more
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 pr-0 col-form-label">Product Main Category <span class="text-danger">*</span></label>
+                    <div class="col-sm-4">
+                      <ng-select placeholder="Select Product Main Category" [items]="vendors" bindLabel="name" bindValue="id"
+                        [multiple]="false" class="selectVendorInput" formControlName="productCategory" [loading]="false"
+                        [ngClass]="{'errorBorder': submitted && productForm.get('vendorCategoryIds').errors}"> </ng-select>
+                    </div>
+
+                    <label class="col-sm-2 pr-0 col-form-label">Product Sub Category <span class="text-danger">*</span></label>
+                    <div class="col-sm-4">
+                      <ng-select placeholder="Select Product Sub Category" [items]="vendors" bindLabel="name" bindValue="id"
+                        [multiple]="false" class="selectVendorInput" formControlName="productSubCategory" [loading]="false"
+                        [ngClass]="{'errorBorder': submitted && productForm.get('vendorCategoryIds').errors}"> </ng-select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Product Price Restrictions<span class="text-danger">*</span></label>
+                    <div class="col-sm-10">
+                      <div class="row">
+                        <div class="col-4">
+                          <div class="row">
+                            <div class="col-4">
+                              <label class="col-form-label">Net Price <span>(Rs)</span> <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-8">
+                              <input type="number" min="1" class="form-control number-input-field" placeholder="Net Price" formControlName="netPrice"
+                              (keyup)="fromNetPrice()"
+                              [ngClass]="{'errorBorder': submitted && productForm.get('netPrice').errors}">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="row">
+                            <div class="col-4">
+                              <label class="col-form-label">Discount <span>(%)</span> <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-8">
+                              <input type="number" class="form-control number-input-field" placeholder="Discount" formControlName="discount"
+                              (keyup)="fromDiscount()"
+                              [ngClass]="{'errorBorder': submitted && productForm.get('discount').errors}">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="row">
+                            <div class="col-4">
+                              <label class="col-form-label">Gross Price <span>(Rs)</span> <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-8">
+                              <input type="number" min="1" class="form-control number-input-field" placeholder="Gross Price" formControlName="grossPrice"
+                              [ngClass]="{'errorBorder': submitted && productForm.get('grossPrice').errors}" readonly>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Product Quantity Restrictions <span class="text-danger">*</span></label>
+                    <div class="col-sm-10">
+                      <div class="row">
+                        <div class="col-4">
+                          <div class="row">
+                            <div class="col-4">
+                              <label class="col-form-label">Quantity <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-8">
+                              <input type="number" min="0" class="form-control number-input-field" placeholder="Quantity" formControlName="qty"
+                              onkeydown="if(event.key==='.'){event.preventDefault();}" oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"
+                              [ngClass]="{'errorBorder': submitted && productForm.get('qty').errors}">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="row">
+                            <div class="col-4">
+                              <label class="col-form-label">Min <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-8">
+                              <input type="number" min="0" class="form-control number-input-field" placeholder="Enter Min Order Qty" formControlName="minOrderQty"
+                              onkeydown="if(event.key==='.'){event.preventDefault();}" oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"
+                              [ngClass]="{'errorBorder': submitted && productForm.get('minOrderQty').errors}">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="row">
+                            <div class="col-4">
+                              <label class="col-form-label">Max <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-8">
+                              <input type="number" min="0" class="form-control number-input-field" placeholder="Enter Max Order Qty" formControlName="maxOrderQty"
+                              onkeydown="if(event.key==='.'){event.preventDefault();}" oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"
+                              [ngClass]="{'errorBorder': submitted && productForm.get('maxOrderQty').errors}" >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 text-right">
+                      <button type="button" class="btn appButton rounded btn-lg px-5" >
+                        <small>
+                          <i class="spinner-border spinner-border-sm align-middle mr-3" *ngIf="false"></i>
+                          Create
+                        </small>
+                      </button>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+
+
+
+
+<!-- Image Cropper Model -->
+<div class="modal fade" id="imageCropperModel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Image Cropper</h5>
+        <button type="button" id="closeModel" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mb-2">
+          <div class="custom-file-upload">
+            <label for="file-upload" class="custom-file-upload1">
+                <i class="fa fa-cloud-upload"></i> Select Image
+            </label>
+            <input id="file-upload" type="file" (change)="fileChangeEvent($event)" />
+          </div>
+        </div>
+
+        <!-- Product Image -->
+        <div class="row">
+          <div class="col-3">
+            <h6>Product Image</h6>
+          </div>
+          <div class="col-9">
+            <div class="float-right d-flex">
+              <div class="chiller_cb mr-2">
+                <input id="comprossImageCheckBox" type="checkbox" [(ngModel)]="compressImage">
+                <label for="comprossImageCheckBox">Compress image</label>
+                <span></span>
+              </div>
+
+              <div class="chiller_cb mr-2">
+                <input id="isImageSizeCheckBox-4-3" type="radio" value="size-4-3" [(ngModel)]="imageRatio">
+                <label for="isImageSizeCheckBox-4-3">Ratio 4 / 3</label>
+                <span></span>
+              </div>
+
+              <div class="chiller_cb mr-2">
+                <input id="isImageSizeCheckBox-16-9" type="radio" value="size-16-9" [(ngModel)]="imageRatio">
+                <label for="isImageSizeCheckBox-16-9">Ratio 16 / 9</label>
+                <span></span>
+              </div>
+
+              <div class="chiller_cb">
+                <input id="isImageSizeCheckBox-any" type="radio" value="any" [(ngModel)]="imageRatio">
+                <label for="isImageSizeCheckBox-any">Any</label>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="mt-0">
+        <div class="row mb-3">
+          <div class="col-6" *ngIf="compressImage">
+            <div class="coverImage" [ngClass]="{'imageSize1': imageRatio === 'size-4-3', 'imageSize2': imageRatio === 'size-16-9', 'imageSize3': imageRatio === 'any'}">
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
+              [resizeToWidth]="768" [cropperMinWidth]="768" [imageQuality]="50" format="jpeg" (imageCropped)="ProductImageCropped($event)" *ngIf="imageRatio === 'size-4-3'"></image-cropper>
+
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="16 / 9" *ngIf="imageRatio === 'size-16-9'"
+                [resizeToWidth]="1280" [cropperMinWidth]="1280" [imageQuality]="40" format="jpeg" (imageCropped)="ProductImageCropped($event)"></image-cropper>
+
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="false" *ngIf="imageRatio === 'any'"
+                [imageQuality]="50" format="jpeg" (imageCropped)="ProductImageCropped($event)"></image-cropper>
+            </div>
+          </div>
+
+          <div class="col-6" *ngIf="!compressImage">
+            <div class="coverImage" [ngClass]="{'imageSize1': imageRatio === 'size-4-3', 'imageSize2': imageRatio === 'size-16-9', 'imageSize3': imageRatio === 'any'}">
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
+              [resizeToWidth]="768" [cropperMinWidth]="768" format="jpeg" (imageCropped)="ProductImageCropped($event)" *ngIf="imageRatio === 'size-4-3'"></image-cropper>
+
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="16 / 9" *ngIf="imageRatio === 'size-16-9'"
+                [resizeToWidth]="1280" [cropperMinWidth]="1280" format="jpeg" (imageCropped)="ProductImageCropped($event)"></image-cropper>
+
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="false" *ngIf="imageRatio === 'any'"
+                format="jpeg" (imageCropped)="ProductImageCropped($event)"></image-cropper>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="coverImage" [ngClass]="{'imageSize1': imageRatio === 'size-4-3', 'imageSize2': imageRatio === 'size-16-9', 'imageSize3': imageRatio === 'any'}">
+              <img [src]="croppedImage.productImage" style="width: 100%; height: 100%;" *ngIf="croppedImage.productImage"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12">
+            <div class="float-right">
+              <span *ngIf="imageUploadClickLoading">Please wait... We are processing your image. It will take a few seconds.</span>
+              <button type="button" class="btn btn-sm appButton ml-1" [disabled]="imageUploadClickLoading" (click)="productImageUpload()">
+                <i class="spinner-border spinner-border-sm" *ngIf="imageUploadClickLoading"></i> Upload
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

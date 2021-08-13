@@ -1,0 +1,23 @@
+// $app_color: #f5286b;
+$app_color: #EF3651;
+
+.brand-link {
+  background: #dedede !important;
+}
+
+.sidebar {
+  padding: 0 !important;
+}
+
+.sidebar-dark-maroon .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-maroon .nav-sidebar>.nav-item>.nav-link.active {
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+  border-left: 5px solid $app_color !important;
+  border-radius: 0;
+  color: $app_color !important;
+}
+
+[class*=sidebar-light-] .nav-sidebar>.nav-item.menu-open>.nav-link {
+  background-color: $app_color !important;
+  color: #fff !important;
+}

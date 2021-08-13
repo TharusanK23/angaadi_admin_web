@@ -1,0 +1,5 @@
+$app_color: #EF3651;
+
+::ng-deep .ngx-pagination .current {
+  background: $app_color !important;
+}

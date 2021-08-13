@@ -1,0 +1,78 @@
+
+<section class="login">
+		<div class="login_box">
+			<div class="left">
+				<div class="top_link"><a href="#"><img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt="">Register</a></div>
+				<div class="contact">
+					<form [formGroup]="loginForm">
+						<h3>SIGN IN</h3>
+
+            <div class="row check-row mb-4">
+              <div class="col-6" *ngFor="let type of loginType; let i = index">
+                <div class="angaadi_rb">
+                  <label class="rate-label" for="loginTypeRadio{{i}}">
+                    {{type.name}}
+                  </label>
+                  <input id="loginTypeRadio{{i}}" type="radio" name="type"  value="{{type.id}}" [checked]="type.id === selectedType.id"
+                  (click)="selectType(type)">
+                  <span></span>
+                </div>
+              </div>
+            </div>
+
+
+						<div class="row">
+              <div class="col-3 pr-0 align-self-center">
+                <ng-select bindLabel="dial_code" [items]="['+94','+44']" [(ngModel)]="countryCode" [ngModelOptions]="{standalone: true}" bindValue="dial_code"  [clearable]="false"></ng-select>
+              </div>
+              <div class="col-9 pl-0">
+                <input type="number" class="number-input-field" placeholder="PHONE NUMBER" *ngIf="selectedType.id == 1" formControlName="phoneNumber"
+                  [ngClass]="{'errorBorder': submitted && loginForm.get('phoneNumber').errors}">
+              </div>
+            </div>
+
+						<input type="email" placeholder="E-MAIL"*ngIf="selectedType.id == 2" formControlName="email"
+            [ngClass]="{'errorBorder': submitted && loginForm.get('email').errors}">
+
+						<input [type]="showPassword ? 'text' : 'password'" placeholder="PASSWORD" formControlName="password"
+            [ngClass]="{'errorBorder': submitted && loginForm.get('password').errors}">
+              <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').touched || loginForm.get('password').dirty)">
+                <small class="text-danger" *ngIf="loginForm.get('password').hasError('required')">
+                  password is required
+                </small>
+                <small class="text-danger" *ngIf="loginForm.get('password').errors.minlength">
+                  Password must be at least 8 characters
+                </small>
+                <small class="text-danger" *ngIf="loginForm.get('password').hasError('passwordStrength')">
+                  {{loginForm.get('password').errors['passwordStrength']}}
+                </small>
+              </div>
+
+            <div class="row check-row mt-0">
+              <div class="col-12">
+                <div class="chiller_cb">
+                  <label class="rate-label" for="showPassword">
+                    Show password
+                  </label>
+                  <input id="showPassword" type="checkbox" name="type" (click)="makeShowPassword()" [checked]="showPassword">
+                  <span></span>
+                </div>
+              </div>
+            </div>
+
+						<button class="submit" [disabled]="isButtonLoading || !isButtonEnabled()" (click)="signIn()">
+              <i class="spinner-border spinner-border-sm align-middle mr-3" *ngIf="isButtonLoading"></i>
+              LET'S GO
+            </button>
+					</form>
+				</div>
+			</div>
+			<div class="right">
+				<div class="right-text text-center">
+					<!-- <h2>AngAAdi</h2> -->
+          <img src="assets/images/logo_title_horizontal.png" alt="logo_title_horizontal.png" width="38%">
+					<h5 class="text-uppercase">Every purchase has a purpose</h5>
+				</div>
+			</div>
+		</div>
+	</section>

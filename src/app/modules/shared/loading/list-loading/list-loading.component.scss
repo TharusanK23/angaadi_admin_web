@@ -1,0 +1,32 @@
+.animationLoading{
+  padding: 12px 15px;
+}
+@keyframes animate {
+  from {transition:none;}
+  to {background-color:#f6f7f8;transition: all 0.3s ease-out;}
+}
+
+.line-one,.line-two,.line-three {
+  position:relative;
+  background-color: #CCC;
+  height: 6px;
+  animation-name: animate;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.line-one{
+  width: 80%;
+  height: 12px;
+}
+
+.line-two{
+  width: 50%;
+  margin-top: 6px;
+}
+
+.line-three{
+  width: 30%;
+  margin-top: 6px;
+}

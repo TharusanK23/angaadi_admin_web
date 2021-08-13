@@ -1,0 +1,637 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+// $app_color: #f5286b;
+$app_color: #EF3651;
+
+.app-color {
+  color: $app_color;
+}
+
+.app-back-ground-color {
+  background: $app_color;
+}
+.app-back-ground-color-white{
+  background: #ffffff;
+}
+
+.emptyCard .card {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyCard .card img {
+  width: 90px;
+  margin-bottom: 25px;
+}
+
+.appButton {
+  background: $app_color !important;
+  color: #ffffff !important;
+  border-radius: 0px !important;
+  padding-left: 22px !important;
+  padding-right: 22px !important;
+  text-transform: capitalize;
+}
+
+.app-outline-button {
+  border: 1px solid $app_color;
+  color: $app_color;
+  background: white;
+}
+
+.hoverCard:hover {
+  background: #fff0f0 !important;
+  cursor: pointer;
+}
+
+.dotLineHr {
+  border-top: 1px dashed #b1b1b1;
+  margin-top: 5px;
+}
+
+.tab-active-page {
+  border: 1px solid $app_color !important;
+}
+
+label {
+  font-weight: 500 !important;
+  color: #505050;
+}
+
+input, textarea, button, select, span .btn .submit {
+  outline: none;
+  box-shadow:none !important;
+}
+
+// .ng-select .ng-select-container, .form-control {
+//   background-color: #f5f5f5 !important;
+// }
+
+.sidebar a {
+  color:#525454 !important;
+  font-size: 14px !important;
+}
+
+// Sweet Alert Style
+.swal2-cancel {
+  background: #ffffff !important;
+  border: 1px solid $app_color !important;
+  color: $app_color !important;
+}
+
+.swal2-confirm {
+  background: $app_color !important;
+  color: #ffffff;
+}
+
+.swal2-actions button {
+  height: 40px !important;
+  padding: 0px 42px;
+}
+
+.swal2-image {
+  width: 62px !important;
+}
+// End Sweet Alert Style
+
+// Number Input Arrow Hide
+.number-input-field::-webkit-outer-spin-button,
+.number-input-field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.number-input-field {
+  -moz-appearance: textfield;
+}
+// End Number Input Arrow Hide
+// Form Image Box View
+.formImageBox {
+  border-style: dotted;
+  border-color: #565656;
+  border-width: 2px;
+  height: 172px;
+  width: 172px;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.formImageBox img {
+  width: 100%;
+  height: 100%;
+}
+
+.changeImageCamaraIcon {
+  position: absolute;
+  bottom: 86px;
+  left: 12px;
+  background: #d6d6d6;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+
+// End Form Image Box View
+
+// CheckBox Style
+.span_pseudo, .chiller_cb span:before, .chiller_cb span:after {
+  content: "";
+  display: inline-block;
+  background: #fff;
+  width: 0;
+  height: 0.2rem;
+  position: absolute;
+  transform-origin: 0% 0%;
+}
+
+.chiller_cb {
+  position: relative;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+.chiller_cb input {
+  display: none;
+}
+.chiller_cb input:checked ~ span {
+  background: $app_color;
+  border-color: $app_color;
+}
+.chiller_cb input:checked ~ span:before {
+  width: 1rem;
+  height: 0.15rem;
+  transition: width 0.1s;
+  transition-delay: 0.3s;
+}
+.chiller_cb input:checked ~ span:after {
+  width: 0.4rem;
+  height: 0.15rem;
+  transition: width 0.1s;
+  transition-delay: 0.2s;
+}
+.chiller_cb input:disabled ~ span {
+  background: #ececec;
+  border-color: #dcdcdc;
+}
+.chiller_cb input:disabled ~ label {
+  color: #dcdcdc;
+}
+.chiller_cb input:disabled ~ label:hover {
+  cursor: default;
+}
+.chiller_cb label {
+  padding-left: 2rem;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  margin-bottom:0;
+  color: #5f5f5f;
+  font-size: 14px;
+}
+.chiller_cb span {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid #ccc;
+  position: absolute;
+  left: 0;
+  transition: all 0.2s;
+  z-index: 1;
+  box-sizing: content-box;
+}
+.chiller_cb span:before {
+  transform: rotate(-55deg);
+  top: 1rem;
+  left: 0.37rem;
+}
+.chiller_cb span:after {
+  transform: rotate(35deg);
+  bottom: 0.35rem;
+  left: 0.2rem;
+} // End CheckBox Style
+
+// RADIO BUTTON START
+.angaadi_rb {
+  position: relative;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+.angaadi_rb input {
+  display: none;
+}
+.angaadi_rb input:checked ~ span {
+  border-color: $app_color;
+}
+.angaadi_rb input:checked ~ span:before {
+  width: 1rem;
+  height: 0.15rem;
+  transition: width 0.1s;
+  transition-delay: 0.3s;
+}
+.angaadi_rb input:checked ~ span:after {
+  content: "\f111";
+  font-family: 'FontAwesome';
+  color: $app_color;
+  width: 0.4rem;
+  height: 0.15rem;
+  transition: width 0.1s;
+  transition-delay: 0.2s;
+}
+.angaadi_rb input:disabled ~ span {
+  border-color: #dcdcdc;
+}
+.angaadi_rb input:disabled ~ label {
+  color: #dcdcdc;
+}
+.angaadi_rb input:disabled ~ label:hover {
+  cursor: default;
+}
+.angaadi_rb label {
+  padding-left: 2rem;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  margin-bottom:0;
+  color: #5f5f5f;
+  font-size: 14px;
+}
+.angaadi_rb span {
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #ccc;
+  position: absolute;
+  left: 0;
+  transition: all 0.2s;
+  z-index: 1;
+  box-sizing: content-box;
+}
+// RADIO BUTTON END
+
+// Card List
+.cardDetailRow {
+  padding: 12px 20px;
+}
+.cardDetailRow .itemImage {
+  height: 75px;
+  width: 72px;
+  border-radius: 10px;
+}
+
+.cardDetailRow .mainHeading {
+  font-weight: bold;
+  font-size: 17px;
+  width: 98%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardDetailRow .subHeading {
+  font-size: 14px;
+  font-weight: 500;
+  color: #565656;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardDetailRow .bottomText {
+  font-size: 11px;
+  margin-top: 13px;
+  color: #565656;
+}
+
+.cardDetailRow .bottomText .actionIcons i{
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cardDetailRow .bottomText .actionIcons i:hover{
+  transform: scale(1.5);
+} // End Card List
+
+//Row List
+.list-row-item {
+  padding: 6px 20px;
+}
+
+.list-row-item .row {
+  background: #ffffff;
+  padding: 10px 5px;
+  border-left: 4px solid $app_color;
+  box-shadow: 0 0 1px rgb(0 0 0 / 10%), 0 1px 2px rgb(0 0 0 / 15%);
+  border-radius: 5px;
+}
+
+form .list-row-item .row {
+  border: none !important;
+}
+
+.list-row-item .bold-text {
+  // font-weight: bold;
+  font-size: 15px;
+}
+
+.list-row-item .color-text {
+  // font-weight: bold;
+  font-size: 15px;
+  color: $app_color;
+}
+
+.list-row-item .muted-text {
+  // font-weight: 500;
+  font-size: 15px;
+  color: #565656;
+}
+
+.dotted-border {
+  border-style: dotted;
+  border-color: $app_color;
+  border-radius: 14px;
+  padding: 1px 12px;
+  border-width: 2px;
+  background: #ffffff;
+}
+
+.errorBorder {
+  border: 1px solid #dc3545 !important;
+  border-radius: .25rem;
+}
+
+#toast-container > div {
+  width: 350px !important;
+  opacity: 1;
+}
+
+.product-images-list {
+  width: 55px;
+  height: 55px;
+  margin: 3px;
+  border: 2px solid #ababab;
+  cursor: pointer;
+}
+
+.detail-color-text {
+  font-weight: bold;
+  // font-size: 14px;
+  color: $app_color;
+}
+
+.detail-muted-text {
+  font-weight: bold;
+  font-size: 14px;
+  color: #565656;
+}
+
+.collaps-div .collaps-headding {
+  background: #fbeef2;
+  cursor: pointer;
+  color: #565656;
+}
+
+.collaps-div .collaps-list {
+  -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.collaps-div .list-icon i {
+  background: #ff8a25;
+  color: #ffffff;
+  font-size: 24px;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+}
+
+.active-dotted-border {
+  border-style: dotted;
+  border-color: #1baf00;
+  border-radius: 14px;
+  padding: 0 10px;
+  border-width: 2px;
+  background: #ecfbef;
+}
+
+.inactive-dotted-border {
+  border-style: dotted;
+  border-color: $app_color;
+  border-radius: 14px;
+  padding: 0 10px;
+  border-width: 2px;
+  // background: #ffdde8;
+}
+
+// Menu ScrollBar
+.app-scroll-bar::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+.app-scroll-bar::-webkit-scrollbar
+{
+  width: 8px;
+  background-color: #343a40;
+}
+
+.app-scroll-bar::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #ababab;
+}
+
+.modal-content {
+  border-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.modal-header {
+  background: #f5f5f5 !important;
+}
+
+.c-point {
+  cursor: pointer !important;
+}
+
+.action-button-icon {
+  cursor: pointer !important;
+  font-size: 16px !important;
+}
+
+@media only screen and (max-width: 992px) {
+  .modal-dialog {
+    max-width: 830px !important;
+  }
+
+  .list-row-item .bold-text {
+    font-size: 14px;
+  }
+
+  .has-treeview .nav-treeview li {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 830px) {
+  .card-list-image {
+    padding: 0 !important;
+  }
+  .cardDetailRow .itemImage {
+    height: 70px;
+    width: 66px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .list-row-item .row {
+    padding: 10px 0;
+    border: 0;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .xs-margin-top {
+    margin-top: 10px;
+  }
+  .cardDetailRow .itemImage {
+    height: 78px;
+    width: 78px;
+  }
+  .cropper-image-view {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .list-row-item {
+    padding: 5px 12px;
+  }
+}
+
+.content-main-color{
+  background-color: rgb(243, 241, 241);
+}
+
+.col-form-label {
+  font-size: 14px !important;
+}
+
+// IMAGE SECTION
+$app_color: #EF3651;
+
+.col-form-label {
+  font-size: 14px;
+}
+
+.imageBoxDev {
+  width: 100%;
+  height: 150px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.imageBoxDev img {
+  max-height: 100px;
+  border-radius: 10px;
+}
+
+.imageClose {
+  position: absolute;
+  top: 22px;
+  margin-left: 8px;
+  bottom: 0;
+  color: #f54141;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.add-image-model-popup{
+  height: 80px;
+  width: 80px;
+  background: #f5f5f5;
+  border: 1px solid #dcdcdc;
+  border-radius: .25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $app_color;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+
+// Image Crop
+.profileImage {
+  border-style: dotted;
+  border-color: #565656;
+  border-width: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+}
+
+.coverImage {
+  border-style: dotted;
+  border-color: #565656;
+  border-width: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageSize1 {
+  width: 340px;
+  height: 255px;
+}
+
+.imageSize2 {
+  width: 350px;
+  height: 200px;
+}
+
+.imageSize3 {
+  width: 250px;
+  height: 250px;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+.custom-file-upload .custom-file-upload1 {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.m-32 {
+  margin-top: 34px !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .imageSize1 {
+    width: 280px;
+    height: 210px;
+  }
+
+  .imageSize2 {
+    width: 292px;
+    height: 219px;
+  }
+}
