@@ -9,13 +9,14 @@ import { Image } from 'src/app/models';
   providedIn: 'root'
 })
 export class ImageService {
+  private imageBaseUrl = (environment as any).imageBaseUrl;
 
   constructor(
     private http: HttpClient
   ) { }
 
   uploadImage(data: any): Observable<Image> {
-    return this.http.post<any>(environment.imageBaseUrl + 'upload', data).pipe(map(res => {
+    return this.http.post<any>(this.imageBaseUrl + 'upload', data).pipe(map(res => {
       return new Image(res.result);
     }));
   }

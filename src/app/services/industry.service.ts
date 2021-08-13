@@ -9,19 +9,20 @@ import { IndustryCreateModel, Industry } from 'src/app/models';
   providedIn: 'root'
 })
 export class IndustryService {
+  private industryBaseUrl = (environment as any).industryBaseUrl;
 
   constructor(
     private http: HttpClient
   ) { }
 
   createIndustry(data: IndustryCreateModel): Observable<Industry> {
-    return this.http.post<any>(environment.industryBaseUrl + '/create', data).pipe(map(res => {
+    return this.http.post<any>(this.industryBaseUrl + '/create', data).pipe(map(res => {
       return new Industry(res.result);
     }));
   }
 
   getAllIndustry(): Observable<Industry[]> {
-    return this.http.get<any>(environment.industryBaseUrl).pipe(map(res => res.result.map((industry: Industry) => {
+    return this.http.get<any>(this.industryBaseUrl).pipe(map(res => res.result.map((industry: Industry) => {
       return new Industry(industry);
     })));
   }
